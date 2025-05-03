@@ -18,7 +18,7 @@ spec:
         app: flask-app
     spec:
       containers:
-      - image: sayantan2k21/cricket-news:v1
+      - image: sayantan2k21/cricket-news:v2
         name: flask-app
 
 ---
