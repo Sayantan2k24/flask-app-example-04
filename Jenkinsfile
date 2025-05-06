@@ -65,7 +65,6 @@ pipeline {
 
         stage('Delete Image Locally') {
 
-
             steps {
                 sh """
                     docker rmi -f ${IMAGE_NAME}:${IMAGE_TAG}
@@ -78,15 +77,41 @@ pipeline {
             
         }
 
-        stage('Create ArgoCD Aplication from manifest') {
-            steps {
 
-                sh "kubectl apply -f application-argocd.yml"
+        stage('Update the deployment file in CD') {
+
+            steps {
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'git-cred', passwordVariable: 'pass', usernameVariable: 'user')]) {
+
+
+                        sh """
+                            git clone -b main https://${pass}@github.com/Sayantan2k24/flask-app-example-04-crickbuzz-api-CD.git
+                            cd flask-app-example-04-crickbuzz-api-CD
+
+                            ls
+                            cat deployment.yaml
+                
+
+                        """
+
+                        sh """ 
+                            echo "new shell"
+                            echo $pwd
+                        """
+                    }
+
+                }
             }
         }
 
+        // stage('Create ArgoCD Aplication from manifest') {
+        //     steps {
 
+        //         sh "kubectl apply -f application-argocd.yml"
+        //     }
+        // }
+ 
+    }       
 
-
-    }
 }
