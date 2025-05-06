@@ -109,12 +109,12 @@ pipeline {
 
                             sed -i 's|image: sayantan2k21/crickbuzz-api-app:.*|image: ${IMAGE_NAME}:${BUILD_NUMBER}|g' deployment.yaml
 
-                            echo "changed tag:"
+                            echo "changed tag"
 
-                            cat deployment
+                            cat deployment.yaml
 
 
-                            git add depoloyment.yaml
+                            git add deployment.yaml
                             git commit -m "Updated the tag to ${BUILD_NUMBER}"
                             git push origin main
 
