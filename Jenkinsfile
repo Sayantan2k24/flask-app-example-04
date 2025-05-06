@@ -95,9 +95,19 @@ pipeline {
 
                         """
 
-                        sh """ 
+                        sh """
                             echo "new shell"
                             echo $pwd
+                            cd flask-app-example-04-crickbuzz-api-CD
+                            echo $pwd
+
+                            ls
+
+                            
+
+
+
+
                         """
                     }
 
