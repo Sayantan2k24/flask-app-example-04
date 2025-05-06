@@ -7,7 +7,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Sayantan2k24/flask-app-example-04.git'
+    repoURL: 'https://github.com/Sayantan2k24/flask-app-example-04-crickbuzz-api-CD.git'
     targetRevision: HEAD
     path: .
   destination:

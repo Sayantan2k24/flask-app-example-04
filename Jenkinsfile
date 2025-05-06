@@ -103,25 +103,34 @@ pipeline {
 
                             ls
 
-                            
+                            cat deployment
+
+                            echo "Changing tag to ${BUILD_NUMBER}"
+
+                            sed -i 's|image: sayantan2k21/crickbuzz-api-app:.*|image: ${IMAGE_NAME}:${BUILD_NUMBER}|g' deployment.yaml
+
+                            echo "changed tag:"
+
+                            cat deployment
 
 
-
+                            git add depoloyment.yaml
+                            git commit -m "Updated the tag to ${BUILD_NUMBER}"
+                            git push origin main
 
                         """
+
                     }
 
                 }
             }
         }
 
-        // stage('Create ArgoCD Aplication from manifest') {
-        //     steps {
+        stage('Create ArgoCD Aplication from manifest') {
+            steps {
 
-        //         sh "kubectl apply -f application-argocd.yml"
-        //     }
-        // }
- 
+                sh "kubectl apply -f application-argocd.yml"
+            }
+        }
     }       
-
 }
